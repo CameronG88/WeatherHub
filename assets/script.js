@@ -1,33 +1,30 @@
-
+// click event for search and display
 $(".btn").on("click", function (event) {
     event.preventDefault();
-
+// variables for search api stuff and date display
     var city = $("#searchInput").val();
-
-
-    console.log(searchInput);
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=ca038625d5f7b3e933a9e341521a44d3";
 
     var today = new Date();
 
     var date = (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getFullYear();
-    console.log(date);
+    // get it
     $.ajax({
         url: queryURL,
         method: "GET"
     })
 
         .then(function (response) {
-            console.log(queryURL);
+          
 
             console.log(response);
 
 
             var newLi = $("<li>");
 
-            newLi.text(city);
-            newLi.addClass("list-group-item searchItem");
+            newLi.text(response.name);
+            newLi.addClass("list-group-item searchItem text-center");
             $("#searchHistory").prepend(newLi);
 
             $("#cityView").text(response.name);
@@ -72,11 +69,15 @@ function getForecast(city) {
 
                 var newCol = $("<div>");
 
-                newCol.addClass("col");
+                newCol.addClass("col forecast-col m-2");
+                newCol.text(response.list[index].main.temp + " " + response.list[index].main.humidity + " " + response.list[index].dt_txt)
 
-                console.log(JSON.stringify(response.list[index]));
 
-                newCol.text(response.list[index]);
+                // console.log(response.list[index].main.temp);
+                // console.log(response.list[index].main.humidity);
+                // console.log(response.list[index].dt_txt);
+
+                // newCol.text(response.list[index]);
 
                 $("#forecastDiv").append(newCol);
 
