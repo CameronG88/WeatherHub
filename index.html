@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="text-center jumbotron jumbotron-fluid">
+            <h1>Your Weather Dashboard</h1>
+        </header>
+    </div>
+    <main class="container float-right">
+        <h1 class="text-center" id="cityView"> Your Weather Info will Display Here </h1>
+        <h3 class="text-center" id="dateView"> </h3>
+        <!-- row to contain the chosen cities current weather info -->
+        <!-- row to append the cols for the 5 day forecast for the chosen city -->
+        <div id="instantView" class="row">
+            <div class="col-12">
+                <p id="temp"></p>
+
+                <p id="humid"></p>
+                
+                <p id="windSpeed"></p>
+                
+                <p id="uvIndex"></p>
+            </div>
+        <div id="forecastDiv" class="row"></div>
+        </div>
+    </main>
+    <!-- container holding search bar and search history -->
+    <aside id="searchBody" class="container float-left">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+            </div>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search here.."
+                aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+        <ul id="searchHistory">
+
+        </ul>
+    </aside>
+
+
+
+
+
+    <script type="text/javascript" src="./assets/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+#searchBody {
+    margin-top: 10px;
+    width: 25%;
+}
+
+.jumbotron {
+    background-color: rgba( 32, 178, 170, .8);
+    color: whitesmoke;
+}
+h3 {
+    font-size: medium;
+}
+
+aside {
+    height: 500px;
+    border: solid 1px gray;
+    background-color:rgba(255, 255, 255, .8);
+}
+
+body {
+    background: url(./img/181010131059-australia-best-beaches-cossies-beach-cocos3-full-169.jpg) no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+   
+}
+
+.searchItem {
+    background-color: lightseagreen;
+}
+
+main {
+    background-color:rgba(255, 255, 255, .8);
+    height: 500px;
+}
