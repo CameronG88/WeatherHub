@@ -26,43 +26,48 @@
             <h1>Your Weather Dashboard</h1>
         </header>
     </div>
-    <main class="container float-right">
-        <h1 class="text-center" id="cityView"> Your Weather Info will Display Here </h1>
-        <h3 class="text-center" id="dateView"> </h3>
-        <!-- row to contain the chosen cities current weather info -->
-        <!-- row to append the cols for the 5 day forecast for the chosen city -->
-        <div id="instantView" class="row">
-            <div class="col-12">
-                <p id="temp"></p>
+    <div class="container">
+        <div class="row">
+            <aside id="searchBody" class="col-3 float-left">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+                    </div>
+                    <input type="search" id="searchInput" class="form-control" placeholder="Search here.."
+                        aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>
+                <ul id="searchHistory">
 
-                <p id="humid"></p>
-                
-                <p id="windSpeed"></p>
-                
-                <p id="uvIndex"></p>
-            </div>
-        <div id="forecastDiv" class="row"></div>
+                </ul>
+            </aside>
+            <div class="col-1"></div>
+            <main id="main" class="col-8 float-right">
+                <h1 class="text-center" id="cityView"> Your Weather Info will Display Here </h1>
+                <h3 class="text-center" id="dateView"> </h3>
+                <!-- row to contain the chosen cities current weather info -->
+                <!-- row to append the cols for the 5 day forecast for the chosen city -->
+                <div id="instantView" class="row">
+                    <div class="col-12">
+                        <p id="temp"></p>
+
+                        <p id="humid"></p>
+
+                        <p id="windSpeed"></p>
+
+                        <p id="uvIndex"></p>
+                    </div>
+                    <div id="forecastDiv" class="row"></div>
+                </div>
+            </main>
+            <!-- container holding search bar and search history -->
+            
+
         </div>
-    </main>
-    <!-- container holding search bar and search history -->
-    <aside id="searchBody" class="container float-left">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
-            </div>
-            <input type="text" id="searchInput" class="form-control" placeholder="Search here.."
-                aria-label="Example text with button addon" aria-describedby="button-addon1">
         </div>
-        <ul id="searchHistory">
-
-        </ul>
-    </aside>
 
 
 
-
-
-    <script type="text/javascript" src="./assets/script.js"></script>
+        <script type="text/javascript" src="./assets/script.js"></script>
 </body>
 
 </html>

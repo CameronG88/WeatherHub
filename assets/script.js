@@ -69,9 +69,15 @@ function getForecast(city) {
 
         .then(function (response) {
             for (let index = 4; index < response.list.length; index += 8)  {
+
                 var newCol = $("<div>");
+
                 newCol.addClass("col");
+
+                console.log(JSON.stringify(response.list[index]));
+
                 newCol.text(response.list[index]);
+
                 $("#forecastDiv").append(newCol);
 
             }
