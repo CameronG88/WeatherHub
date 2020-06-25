@@ -2,7 +2,8 @@
 
 This project was to code out a web page that displays current weather info about a searched city and a 5 day forecast as well.
 
-Link to access quiz: https://camerong88.github.io/WebAPIHomework/
+Link to access quiz:  https://camerong88.github.io/WeatherAPIhw/
+
 
 How it works
 
