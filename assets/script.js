@@ -53,7 +53,7 @@ $(".btn").on("click", function (event) {
 // function to get UV index information from the UV API endpoint
 });
 function getUV(lat, lon) {
-    var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=ca038625d5f7b3e933a9e341521a44d3&lat=" + lat + "&lon=" + lon;
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=ca038625d5f7b3e933a9e341521a44d3&lat=" + lat + "&lon=" + lon;
     $.ajax({
         url: uvURL,
         method: "Get"
@@ -68,7 +68,7 @@ function getUV(lat, lon) {
 // function to get 5 day forecast then loop through the API response to fill forecast columns
 function getForecast(city) {
     $("#forecastDiv").empty();
-    var foreURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ca038625d5f7b3e933a9e341521a44d3";
+    var foreURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ca038625d5f7b3e933a9e341521a44d3";
     $.ajax({
         url: foreURL,
         method: "Get"
@@ -96,9 +96,9 @@ function getForecast(city) {
 }
 // function to pull past searched cities and append them to search history div
 function start() {
-    
+ if (storedCities != null) {   
 var storedCities = (JSON.parse(localStorage.getItem("cities")));
-if (storedCities != null) {
+
 for (let index = 0; index < storedCities.length; index++) {
     var newLi = $("<li>");
 
