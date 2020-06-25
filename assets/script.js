@@ -96,7 +96,9 @@ function getForecast(city) {
 }
 // function to pull past searched cities and append them to search history div
 function start() {
+    
 var storedCities = (JSON.parse(localStorage.getItem("cities")));
+if (storedCities != null) {
 for (let index = 0; index < storedCities.length; index++) {
     var newLi = $("<li>");
 
@@ -105,6 +107,6 @@ for (let index = 0; index < storedCities.length; index++) {
             $("#searchHistory").append(newLi);
     
 }
-
+}
     console.log(storedCities);
 }
