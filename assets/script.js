@@ -22,14 +22,14 @@ $(".btn").on("click", function (event) {
     })
 
         .then(function (response) {
-// store it
+            // store it
             cities.push(response.name);
             localStorage.setItem("cities", JSON.stringify(cities));
             console.log(cities);
 
             console.log(response);
 
-// create it
+            // create it
             var newLi = $("<li>");
 
             newLi.text(response.name);
@@ -44,13 +44,13 @@ $(".btn").on("click", function (event) {
             $("#windSpeed").text("Wind Speed: " + response.wind.speed + "mph");
             var lon = response.coord['lon'];
             var lat = response.coord['lat'];
-// run the rest of the functions using the search input and event listener
+            // run the rest of the functions using the search input and event listener
             getUV(lat, lon)
             getForecast(city);
         });
 
 
-// function to get UV index information from the UV API endpoint
+    // function to get UV index information from the UV API endpoint
 });
 function getUV(lat, lon) {
     var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=ca038625d5f7b3e933a9e341521a44d3&lat=" + lat + "&lon=" + lon;
@@ -82,31 +82,33 @@ function getForecast(city) {
                 var newHead = $("<h3>")
                 var newTemp = $("<p>")
                 var NewHumid = $("<p>")
+                // var icon = response.list[index].weather;
+                // var iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                // var iconImage = $("<img").attr("src", iconURL)
                 newCol.addClass("col forecast-col m-2");
                 newHead.text(response.list[index].dt_txt);
-                newTemp.text("Temp(F) " + response.list[index].main.temp);
-                NewHumid.text("Humidity: " + response.list[index].main.humidity);
+                newTemp.text("Temp(F): " + Math.ceil(((response.list[index].main.temp * 9) / 5 - 459.67)) + "°");
+                NewHumid.text("Humidity: " + response.list[index].main.humidity + "%");
 
                 $("#forecastDiv").append(newCol);
                 newCol.prepend(newHead, newTemp, NewHumid);
-
             }
-            console.log(response);
+            
         })
 }
 // function to pull past searched cities and append them to search history div
 function start() {
- if (storedCities != null) {   
-var storedCities = (JSON.parse(localStorage.getItem("cities")));
+    
+        var storedCities = (JSON.parse(localStorage.getItem("cities")));
 
-for (let index = 0; index < storedCities.length; index++) {
-    var newLi = $("<li>");
+        for (let index = 0; index < storedCities.length; index++) {
+            var newLi = $("<li>");
 
             newLi.text(storedCities[index]);
             newLi.addClass("list-group-item searchItem text-center");
             $("#searchHistory").append(newLi);
+
+        }
     
-}
-}
     console.log(storedCities);
 }
