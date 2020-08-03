@@ -58,8 +58,9 @@ function start() {
         alert("Welcome to WeatherHub! Use the search bar on the left to get your first weather update and forecast!")
     } else {
         var storedCities = (JSON.parse(localStorage.getItem("cities")));
-
+        $("#searchHistory").empty();
         for (let index = 0; index < storedCities.length; index++) {
+            cities.push(storedCities[index])
             var newLi = $("<li>");
             newLi.text(storedCities[index]);
             newLi.addClass("list-group-item searchItem text-center");
@@ -83,35 +84,61 @@ function getWeather(city) {
 
         .then(function (response) {
             // store it
-            cities.push(response.name);
-            localStorage.setItem("cities", JSON.stringify(cities));
-            console.log(cities);
+            if(!localStorage.getItem("cities")){
+                localStorage.setItem("cities", "[]");
+            }
+            var storedList = JSON.parse(localStorage.getItem("cities"));
+            var exist = false;
+            for (var i = 0; i < storedList.length; i++)
+                if (storedList[i] == response.name) {
+                    exist = true;
+                    break;
+                }
+            if (!exist) {
+                cities.push(response.name);
+                localStorage.setItem("cities", JSON.stringify(cities));
+                console.log(cities);
 
-            console.log(response);
+                console.log(response);
 
-            // create it
-            var newLi = $("<li>");
+                // create it
+                var newLi = $("<li>");
 
-            newLi.text(response.name);
-            newLi.addClass("list-group-item searchItem text-center");
-            $("#searchHistory").prepend(newLi);
+                newLi.text(response.name);
+                newLi.addClass("list-group-item searchItem text-center");
+                $("#searchHistory").prepend(newLi);
 
-            $("#cityView").text(response.name);
-            $("#dateView").text(date);
+                $("#cityView").text(response.name);
+                $("#dateView").text(date);
 
-            $("#temp").text("Temperature(F): " + Math.ceil(((response.main.temp * 9) / 5 - 459.67)));
-            $("#humid").text("Humidity: " + response.main.humidity + "%");
-            $("#windSpeed").text("Wind Speed: " + response.wind.speed + "mph");
-            var lon = response.coord['lon'];
-            var lat = response.coord['lat'];
-            // run the rest of the functions using the search input and event listener
-            getUV(lat, lon);
-            getForecast(city);
+                $("#temp").text("Temperature(F): " + Math.ceil(((response.main.temp * 9) / 5 - 459.67)));
+                $("#humid").text("Humidity: " + response.main.humidity + "%");
+                $("#windSpeed").text("Wind Speed: " + response.wind.speed + "mph");
+                var lon = response.coord['lon'];
+                var lat = response.coord['lat'];
+                // run the rest of the functions using the search input and event listener
+                getUV(lat, lon);
+                getForecast(city);
+            } else {
+                // create it
+                $("#cityView").text(response.name);
+                $("#dateView").text(date);
+
+                $("#temp").text("Temperature(F): " + Math.ceil(((response.main.temp * 9) / 5 - 459.67)));
+                $("#humid").text("Humidity: " + response.main.humidity + "%");
+                $("#windSpeed").text("Wind Speed: " + response.wind.speed + "mph");
+                var lon = response.coord['lon'];
+                var lat = response.coord['lat'];
+                // run the rest of the functions using the search input and event listener
+                getUV(lat, lon);
+                getForecast(city);
+
+            }
         })
 }
 
 
 $(".searchItem").on("click", function (city) {
-    var city = $(this).text()
+    var city = $(this).text();
     getWeather(city);
 });
